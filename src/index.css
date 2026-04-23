@@ -7,6 +7,12 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}
+
 .cursor {
   position: fixed;
   width: 30px;

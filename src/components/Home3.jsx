@@ -10,7 +10,7 @@ const SlideButton = ({ label }) => (
                px-8 sm:px-10 py-3 sm:py-4
                text-base sm:text-lg font-semibold
                border-2 border-white rounded-full text-white
-               min-w-[140px] sm:min-w-[160px] text-center"
+               min-w-35 sm:min-w-40 text-center"
   >
     {/* Visible text — slides out upward */}
     <motion.span
