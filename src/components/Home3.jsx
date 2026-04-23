@@ -1,25 +1,16 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-// Reusable button with slide-up text animation via Framer variants
+// Responsive padding via className instead of fixed inline style
 const SlideButton = ({ label }) => (
   <motion.div
     whileHover="hover"
     initial="rest"
-    style={{
-      position: 'relative',
-      borderRadius: '9999px',
-      border: '2px solid white',
-      overflow: 'hidden',
-      cursor: 'pointer',
-      padding: '12px 40px',
-      fontSize: '1.125rem',
-      fontWeight: 600,
-      color: 'white',
-      minWidth: '160px',
-      textAlign: 'center',
-      userSelect: 'none',
-    }}
+    className="relative overflow-hidden cursor-pointer select-none
+               px-8 sm:px-10 py-3 sm:py-4
+               text-base sm:text-lg font-semibold
+               border-2 border-white rounded-full text-white
+               min-w-[140px] sm:min-w-[160px] text-center"
   >
     {/* Visible text — slides out upward */}
     <motion.span
@@ -67,7 +58,7 @@ const Home3 = () => (
         <div className="w-20 h-px bg-white" />
       </div>
 
-      {/* Buttons */}
+      {/* Buttons — stack on mobile, row on sm+ */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
         <SlideButton label="Know more →" />
         <SlideButton label="Contact" />
