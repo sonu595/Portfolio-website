@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-// Responsive padding via className instead of fixed inline style
 const SlideButton = ({ label }) => (
   <motion.div
     whileHover="hover"
@@ -12,7 +11,6 @@ const SlideButton = ({ label }) => (
                border-2 border-white rounded-full text-white
                min-w-35 sm:min-w-40 text-center"
   >
-    {/* Visible text — slides out upward */}
     <motion.span
       style={{ display: 'block' }}
       variants={{ rest: { y: 0 }, hover: { y: '-200%' } }}
@@ -21,7 +19,6 @@ const SlideButton = ({ label }) => (
       {label}
     </motion.span>
 
-    {/* Hidden text — slides in from below */}
     <motion.span
       style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
       variants={{ rest: { y: '200%' }, hover: { y: 0 } }}
@@ -61,7 +58,7 @@ const Home3 = () => (
       {/* Buttons — stack on mobile, row on sm+ */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
         <SlideButton label="Know more →" />
-        <SlideButton label="Contact" />
+        <SlideButton label="Contact →" />
       </div>
     </motion.div>
   </div>
