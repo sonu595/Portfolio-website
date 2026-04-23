@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_LINKS = ["Work", "About", "Contact", "Blog"];
 
-// Desktop: slide-up animation on hover
 const DesktopLink = ({ text, index, linkRefs }) => (
   <div className="animated-link-wrapper group">
     <span
@@ -21,7 +20,6 @@ const DesktopLink = ({ text, index, linkRefs }) => (
   </div>
 );
 
-// Mobile: staggered fade-in on menu open
 const MobileLink = ({ text, index, onClick }) => (
   <motion.div
     initial={{ opacity: 0, y: 16 }}
@@ -40,7 +38,7 @@ const Nav = ({ isHoveringRef }) => {
 
   return (
     <>
-      {/* Top bar */}
+      {/* Top bar — z-50, hamburger hides when menu is open */}
       <div className="absolute top-0 left-0 w-full flex justify-between items-center text-white z-50 px-4 sm:px-8">
         <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl cursor-none py-4 hover-text">
           Sonu Singh
@@ -55,17 +53,19 @@ const Nav = ({ isHoveringRef }) => {
           <DesktopLink text="Blog" index={3} linkRefs={linkRefs} />
         </div>
 
-        {/* Hamburger */}
-        <button
-          onClick={() => setMenuOpen(true)}
-          className="md:hidden text-3xl text-white py-4 focus:outline-none"
-          aria-label="Open menu"
-        >
-          ☰
-        </button>
+        {/* Hamburger — hidden when menu is open */}
+        {!menuOpen && (
+          <button
+            onClick={() => setMenuOpen(true)}
+            className="md:hidden text-3xl text-white py-4 focus:outline-none"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        )}
       </div>
 
-      {/* Mobile overlay */}
+      {/* Mobile overlay — z-[60] so it sits above the top bar */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -74,8 +74,9 @@ const Nav = ({ isHoveringRef }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-md z-40 flex flex-col items-center justify-center md:hidden"
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[60] flex flex-col items-center justify-center md:hidden"
           >
+            {/* Close button */}
             <button
               onClick={() => setMenuOpen(false)}
               className="absolute top-6 right-6 text-3xl text-white focus:outline-none"
