@@ -41,13 +41,12 @@ const Home3 = () => (
       {/* Bio text */}
       <p className="text-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed md:leading-loose text-gray-300 font-light px-2">
         I have been working for the past
-        <span className="text-white font-bold mx-1">+10 years</span>
+        <span className="text-white font-bold mx-1">1+ years</span>
         with
-        <span className="text-white font-bold mx-1">Javascript/Typescript</span>.
-        I've been writing/refactoring code and connecting RESTful APIs using
-        <span className="text-white font-bold mx-1">Angular, React and Vue</span>
-        for a couple of years but I also worked with different stacks in the past.
-        I can help/guide your developers with best practices as well.
+        <span className="text-white font-bold mx-1">Javascript/java</span>.
+        I've been writing and debugging code and connecting RESTful APIs using
+        <span className="text-white font-bold mx-1">Springboot, React and postgresql</span>
+        for a couple of months. and currently i am working on a production redy web app.
       </p>
 
       {/* Divider */}
