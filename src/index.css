@@ -1,4 +1,6 @@
+/* index.css */
 @import "tailwindcss";
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -8,20 +10,24 @@ body {
   position: fixed;
   width: 30px;
   height: 30px;
-  border: 1px solid white;
+  border: 0.5px solid white;
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  transition: all 0.2s ease;
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 9999;
 }
 
+
+
 .cursor.active {
   border-radius: 0px;
-  background-color: rgba(255, 255, 255, 0.1);
 }
 
-
+/* Rest of your styles remain the same */
 .animated-link-wrapper {
   cursor: pointer;
   overflow: visible;
@@ -30,6 +36,7 @@ body {
   justify-content: center;
 }
 
+/* ... rest of your existing CSS ... */
 .animated-link-container {
   position: relative;
   display: inline-flex;

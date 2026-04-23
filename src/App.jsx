@@ -1,31 +1,32 @@
-import React, { useEffect, useRef } from "react";
+// App.jsx
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
+import Intro from './Intro';
+import Home3 from "./components/Home3";
+import useCursor from "./hooks/useCursor";
 
 function App() {
-  const isHoveringRef = useRef(false);
-
-  useEffect(() => {
-    const cursor = document.querySelector(".cursor");
-    if (!cursor) return;
-
-    const moveCursor = (e) => {
-      if (!isHoveringRef.current) {
-        cursor.style.top = e.clientY + "px";
-        cursor.style.left = e.clientX + "px";
-      }
-    };
-
-    document.addEventListener("mousemove", moveCursor);
-    return () => document.removeEventListener("mousemove", moveCursor);
-  }, []);
+  const [showIntro, setShowIntro] = useState(true);
+  const { isHoveringRef } = useCursor(); // Cursor logic is now centralized
 
   return (
-    <div className="bg-black">
-      <div className="cursor"></div>
-      <Nav isHoveringRef={isHoveringRef} />
-      <Home isHoveringRef={isHoveringRef} />
-    </div>
+    <motion.div
+      initial={{ y: "100vh" }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="bg-black overflow-hidden"
+    >
+      {showIntro && <Intro onComplete={() => setShowIntro(false)} />}
+      {!showIntro && (
+        <>
+          <Nav isHoveringRef={isHoveringRef} />
+          <Home isHoveringRef={isHoveringRef} />
+          <Home3 />
+        </>
+      )}
+    </motion.div>
   );
 }
 

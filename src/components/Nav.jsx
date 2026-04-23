@@ -1,51 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+// Nav.jsx
+import React, { useRef } from 'react';
 
 const Nav = ({ isHoveringRef }) => {
   const linkRefs = useRef([]);
-
-  useEffect(() => {
-    const cursor = document.querySelector(".cursor");
-    if (!cursor) return;
-
-    const handlers = [];
-
-    linkRefs.current.forEach((el) => {
-      if (!el) return;
-
-      const handleMouseEnter = () => {
-        const rect = el.getBoundingClientRect();
-
-        isHoveringRef.current = true;
-
-        cursor.classList.add("active");
-        cursor.style.width = rect.width + "px";
-        cursor.style.height = rect.height + "px";
-        cursor.style.transition = "width 0.2s ease, height 0.2s ease, top 0.2s ease, left 0.2s ease";
-        cursor.style.top = rect.top + rect.height / 2 + "px";
-        cursor.style.left = rect.left + rect.width / 2 + "px";
-      };
-
-      const handleMouseLeave = () => {
-        isHoveringRef.current = false;
-
-        cursor.classList.remove("active");
-        cursor.style.transition = "";
-        cursor.style.width = "30px";
-        cursor.style.height = "30px";
-      };
-
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
-      handlers.push({ el, handleMouseEnter, handleMouseLeave });
-    });
-
-    return () => {
-      handlers.forEach(({ el, handleMouseEnter, handleMouseLeave }) => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
-      });
-    };
-  }, [isHoveringRef]);
+  // No need for duplicate cursor logic here
 
   const AnimatedLink = ({ text, index }) => (
     <div
@@ -62,18 +20,22 @@ const Nav = ({ isHoveringRef }) => {
   );
 
   return (
-    <div className='bg-transparent flex text-white justify-between items-center relative z-50 px-8'>
-      <span className='text-6xl cursor-pointer py-4'>Sonu Singh</span>
+    <div className='absolute top-0 left-0 w-full flex text-white justify-between items-center z-50 px-4 sm:px-8'>
+      <span className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl cursor-pointer py-4'>Sonu Singh</span>
 
-      <div className='flex gap-16 py-6 px-3 text-2xl items-center'>
+      <div className='hidden md:flex gap-6 lg:gap-16 py-6 px-3 text-xl lg:text-2xl items-center'>
         <AnimatedLink text="Work" index={0} />
         <AnimatedLink text="About" index={1} />
         <AnimatedLink text="Contact" index={2} />
         <h2 className="text-gray-500 text-3xl">|</h2>
         <AnimatedLink text="Blog" index={3} />
       </div>
-    </div>
-  )
-}
 
-export default Nav
+      <div className='md:hidden'>
+        <button className='text-3xl'>☰</button>
+      </div>
+    </div>
+  );
+};
+
+export default Nav;
