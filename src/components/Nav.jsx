@@ -1,66 +1,105 @@
 import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const Nav = ({ isHoveringRef }) => {
-  const linkRefs = useRef([]);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const NAV_LINKS = ["Work", "About", "Contact", "Blog"];
 
-  const AnimatedLink = ({ text, index }) => (
-    <div
-      ref={el => linkRefs.current[index] = el}
-      className="relative overflow-hidden cursor-pointer group px-1 py-1 animated-link-wrapper hover-text"
+// Desktop: slide-up animation on hover
+const DesktopLink = ({ text, index, linkRefs }) => (
+  <div className="animated-link-wrapper group">
+    <span
+      ref={(el) => (linkRefs.current[index] = el)}
+      className="relative overflow-hidden inline-block cursor-none hover-text"
+      style={{ lineHeight: '1.2' }}
     >
       <span className="inline-block transition-all duration-300 ease-out group-hover:-translate-y-full group-hover:opacity-0">
         {text}
       </span>
-      <span className="absolute top-0 left-0 inline-block transition-all duration-300 ease-out translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 text-white/70 group-hover:text-white/85">
+      <span className="absolute inset-0 flex items-center justify-center transition-all duration-300 ease-out translate-y-full group-hover:translate-y-0 text-white/80">
         {text}
       </span>
-    </div>
-  );
+    </span>
+  </div>
+);
 
-  const MobileMenu = () => (
-    <div className={`fixed top-0 right-0 h-full w-64 bg-black/95 backdrop-blur-lg z-50 transform transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} shadow-2xl`}>
-      <div className="flex flex-col items-center justify-center h-full gap-8 text-xl">
-        <button 
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="absolute top-6 right-6 text-3xl text-white hover:text-gray-300 transition-colors"
-        >
-          ✕
-        </button>
-        <AnimatedLink text="Work" index={0} />
-        <AnimatedLink text="About" index={1} />
-        <AnimatedLink text="Contact" index={2} />
-        <AnimatedLink text="Blog" index={3} />
-      </div>
-    </div>
-  );
+// Mobile: staggered fade-in on menu open
+const MobileLink = ({ text, index, onClick }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 16 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3, delay: index * 0.07 }}
+    onClick={onClick}
+    className="w-full text-center py-4 text-2xl font-light tracking-widest text-white border-b border-white/10 active:opacity-60 transition-opacity"
+  >
+    {text}
+  </motion.div>
+);
+
+const Nav = ({ isHoveringRef }) => {
+  const linkRefs = useRef([]);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
-      <div className='absolute top-0 left-0 w-full flex text-white justify-between items-center z-50 px-4 sm:px-8'>
-        <span className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl cursor-pointer py-4'>
+      {/* Top bar */}
+      <div className="absolute top-0 left-0 w-full flex justify-between items-center text-white z-50 px-4 sm:px-8">
+        <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl cursor-none py-4 hover-text">
           Sonu Singh
         </span>
 
-        <div className='hidden md:flex gap-6 lg:gap-16 py-6 px-3 text-xl lg:text-2xl items-center'>
-          <AnimatedLink text="Work" index={0} />
-          <AnimatedLink text="About" index={1} />
-          <AnimatedLink text="Contact" index={2} />
-          <h2 className="text-gray-500 text-3xl">|</h2>
-          <AnimatedLink text="Blog" index={3} />
+        {/* Desktop links */}
+        <div className="hidden md:flex gap-6 lg:gap-16 py-6 px-3 text-xl lg:text-2xl items-center">
+          {NAV_LINKS.slice(0, 3).map((link, i) => (
+            <DesktopLink key={link} text={link} index={i} linkRefs={linkRefs} />
+          ))}
+          <span className="text-gray-500 text-3xl">|</span>
+          <DesktopLink text="Blog" index={3} linkRefs={linkRefs} />
         </div>
 
-        <div className='md:hidden'>
-          <button 
-            onClick={() => setIsMobileMenuOpen(true)}
-            className='text-3xl sm:text-4xl text-white hover:text-gray-300 transition-colors focus:outline-none'
-            aria-label="Menu"
-          >
-            ☰
-          </button>
-        </div>
+        {/* Hamburger */}
+        <button
+          onClick={() => setMenuOpen(true)}
+          className="md:hidden text-3xl text-white py-4 focus:outline-none"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
       </div>
-      <MobileMenu />
+
+      {/* Mobile overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-40 flex flex-col items-center justify-center md:hidden"
+          >
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="absolute top-6 right-6 text-3xl text-white focus:outline-none"
+            >
+              ✕
+            </button>
+
+            <span className="text-white/20 text-sm tracking-widest uppercase mb-10">
+              Sonu Singh
+            </span>
+
+            <div className="flex flex-col items-center w-full max-w-xs">
+              {NAV_LINKS.map((link, i) => (
+                <MobileLink
+                  key={link}
+                  text={link}
+                  index={i}
+                  onClick={() => setMenuOpen(false)}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
