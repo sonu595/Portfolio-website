@@ -6,6 +6,7 @@ import Home3 from "./components/Home3";
 import Intro from "./Intro";
 import useCursor from "./hooks/useCursor";
 import About from "./components/About/About";
+import ComingSoon from "./ComingSoon";
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -22,10 +23,11 @@ function App() {
         <Intro onComplete={() => setShowIntro(false)} />
       ) : (
         <>
-          <Nav isHoveringRef={isHoveringRef} />
+          {/* <Nav isHoveringRef={isHoveringRef} />
           <Home isHoveringRef={isHoveringRef} />
           <Home3 />
-          <About isHoveringRef={isHoveringRef} />
+          <About isHoveringRef={isHoveringRef} /> */}
+          <ComingSoon />
         </>
       )}
     </motion.div>
