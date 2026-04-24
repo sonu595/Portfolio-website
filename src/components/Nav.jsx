@@ -74,7 +74,7 @@ const Nav = ({ isHoveringRef }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 bg-black/95 backdrop-blur-md z-[60] flex flex-col items-center justify-center md:hidden"
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-60 flex flex-col items-center justify-center md:hidden"
           >
             {/* Close button */}
             <button
@@ -83,10 +83,6 @@ const Nav = ({ isHoveringRef }) => {
             >
               ✕
             </button>
-
-            <span className="text-white/20 text-sm tracking-widest uppercase mb-10">
-              Sonu Singh
-            </span>
 
             <div className="flex flex-col items-center w-full max-w-xs">
               {NAV_LINKS.map((link, i) => (

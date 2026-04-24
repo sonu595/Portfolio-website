@@ -1,33 +1,34 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import SlideButton from '../hooks/Button'
 
-const SlideButton = ({ label }) => (
-  <motion.div
-    whileHover="hover"
-    initial="rest"
-    className="relative overflow-hidden cursor-pointer select-none
-               px-8 sm:px-10 py-3 sm:py-4
-               text-base sm:text-lg font-semibold
-               border-2 border-white rounded-full text-white
-               min-w-35 sm:min-w-40 text-center"
-  >
-    <motion.span
-      style={{ display: 'block' }}
-      variants={{ rest: { y: 0 }, hover: { y: '-200%' } }}
-      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-    >
-      {label}
-    </motion.span>
+// const SlideButton = ({ label }) => (
+//   <motion.div
+//     whileHover="hover"
+//     initial="rest"
+//     className="relative overflow-hidden cursor-pointer select-none
+//                px-8 sm:px-10 py-3 sm:py-4
+//                text-base sm:text-lg font-semibold
+//                border-2 border-white rounded-full text-white
+//                min-w-35 sm:min-w-40 text-center"
+//   >
+//     <motion.span
+//       style={{ display: 'block' }}
+//       variants={{ rest: { y: 0 }, hover: { y: '-200%' } }}
+//       transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+//     >
+//       {label}
+//     </motion.span>
 
-    <motion.span
-      style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-      variants={{ rest: { y: '200%' }, hover: { y: 0 } }}
-      transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-    >
-      {label}
-    </motion.span>
-  </motion.div>
-);
+//     <motion.span
+//       style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+//       variants={{ rest: { y: '200%' }, hover: { y: 0 } }}
+//       transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+//     >
+//       {label}
+//     </motion.span>
+//   </motion.div>
+// );
 
 const Home3 = () => (
   <div className="min-h-screen bg-black text-white flex items-center justify-center px-4 sm:px-6 py-16 sm:py-24">

@@ -43,7 +43,6 @@ html, body {
   justify-content: center;
 }
 
-/* ... rest of your existing CSS ... */
 .animated-link-container {
   position: relative;
   display: inline-flex;

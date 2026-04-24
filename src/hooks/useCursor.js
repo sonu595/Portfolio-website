@@ -4,14 +4,17 @@ const useCursor = (options = {}) => {
   const {
     selector = '.hover-text',
     defaultSize = '30px',
-    transitionDuration = '0.2s',
+    snapDuration = '0.45s',
+    releaseDuration = '0.25s',
   } = options;
 
   const isHoveringRef = useRef(false);
   const cursorRef = useRef(null);
   const listenersRef = useRef([]);
+  const rafRef = useRef(null);
+  const mousePos = useRef({ x: 0, y: 0 });
+  const cursorPos = useRef({ x: 0, y: 0 });
 
-  // Create or get the cursor DOM element
   const getCursor = useCallback(() => {
     if (cursorRef.current) return cursorRef.current;
     let el = document.querySelector('.cursor');
@@ -24,40 +27,62 @@ const useCursor = (options = {}) => {
     return el;
   }, []);
 
-  // Follow mouse when not locked to an element
-  const onMouseMove = useCallback((e) => {
-    if (isHoveringRef.current) return;
+  // Lerp helper
+  const lerp = (a, b, t) => a + (b - a) * t;
+
+  // Smooth follow loop using requestAnimationFrame
+  const startFollowLoop = useCallback(() => {
     const cursor = getCursor();
-    cursor.style.top = `${e.clientY}px`;
-    cursor.style.left = `${e.clientX}px`;
+
+    const loop = () => {
+      if (!isHoveringRef.current) {
+        cursorPos.current.x = lerp(cursorPos.current.x, mousePos.current.x, 0.12);
+        cursorPos.current.y = lerp(cursorPos.current.y, mousePos.current.y, 0.12);
+        cursor.style.left = `${cursorPos.current.x}px`;
+        cursor.style.top = `${cursorPos.current.y}px`;
+      }
+      rafRef.current = requestAnimationFrame(loop);
+    };
+
+    rafRef.current = requestAnimationFrame(loop);
   }, [getCursor]);
 
-  // Lock cursor onto hovered element
+  const onMouseMove = useCallback((e) => {
+    mousePos.current = { x: e.clientX, y: e.clientY };
+  }, []);
+
   const onEnter = useCallback((el) => {
     const cursor = getCursor();
     const rect = el.getBoundingClientRect();
     isHoveringRef.current = true;
     cursor.classList.add('active');
-    cursor.style.transition = `width ${transitionDuration} ease, height ${transitionDuration} ease, top ${transitionDuration} ease, left ${transitionDuration} ease`;
+    cursor.style.transition = `
+      width ${snapDuration} cubic-bezier(0.25, 1, 0.5, 1),
+      height ${snapDuration} cubic-bezier(0.25, 1, 0.5, 1),
+      top ${snapDuration} cubic-bezier(0.25, 1, 0.5, 1),
+      left ${snapDuration} cubic-bezier(0.25, 1, 0.5, 1),
+      border-radius ${snapDuration} ease
+    `;
     cursor.style.width = `${rect.width}px`;
     cursor.style.height = `${rect.height}px`;
     cursor.style.top = `${rect.top + rect.height / 2}px`;
     cursor.style.left = `${rect.left + rect.width / 2}px`;
-  }, [getCursor, transitionDuration]);
+  }, [getCursor, snapDuration]);
 
-  // Release cursor back to free movement
   const onLeave = useCallback(() => {
     const cursor = getCursor();
     isHoveringRef.current = false;
     cursor.classList.remove('active');
-    cursor.style.transition = '';
+    cursor.style.transition = `
+      width ${releaseDuration} cubic-bezier(0.25, 1, 0.5, 1),
+      height ${releaseDuration} cubic-bezier(0.25, 1, 0.5, 1),
+      border-radius ${releaseDuration} ease
+    `;
     cursor.style.width = defaultSize;
     cursor.style.height = defaultSize;
-  }, [getCursor, defaultSize]);
+  }, [getCursor, defaultSize, releaseDuration]);
 
-  // Attach mouseenter/mouseleave to all matching elements
   const attachListeners = useCallback(() => {
-    // Remove old listeners first
     listenersRef.current.forEach(({ el, enter, leave }) => {
       el.removeEventListener('mouseenter', enter);
       el.removeEventListener('mouseleave', leave);
@@ -76,21 +101,22 @@ const useCursor = (options = {}) => {
   useEffect(() => {
     getCursor();
     document.addEventListener('mousemove', onMouseMove);
+    startFollowLoop();
     attachListeners();
 
-    // Re-attach when DOM changes (e.g. after Intro unmounts)
     const observer = new MutationObserver(attachListeners);
     observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       document.removeEventListener('mousemove', onMouseMove);
+      cancelAnimationFrame(rafRef.current);
       observer.disconnect();
       listenersRef.current.forEach(({ el, enter, leave }) => {
         el.removeEventListener('mouseenter', enter);
         el.removeEventListener('mouseleave', leave);
       });
     };
-  }, [getCursor, onMouseMove, attachListeners]);
+  }, [getCursor, onMouseMove, startFollowLoop, attachListeners]);
 
   return { isHoveringRef, cursorRef };
 };

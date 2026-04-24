@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import Home3 from "./components/Home3";
 import Intro from "./Intro";
 import useCursor from "./hooks/useCursor";
+import About from "./components/About/About";
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
@@ -24,6 +25,7 @@ function App() {
           <Nav isHoveringRef={isHoveringRef} />
           <Home isHoveringRef={isHoveringRef} />
           <Home3 />
+          <About isHoveringRef={isHoveringRef} />
         </>
       )}
     </motion.div>
