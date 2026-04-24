@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Home from "./components/Home";
-import Nav from "./components/Nav";
-import Home3 from "./components/Home3";
-import Intro from "./Intro";
-import useCursor from "./hooks/useCursor";
-import About from "./components/About/About";
-import ComingSoon from "./ComingSoon";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+import Nav     from "./components/Nav";
+import Home    from "./components/Home";
+import Home3   from "./components/Home3";
+import About   from "./components/About/About";
+import Work    from "./components/work/work";    // ✅ Capital W
+import Contact from "./components/contact/contact"; // ✅ Capital C
+import Intro   from "./Intro";
+import useCursor from "./hooks/useCursor";
+
+// Landing page — sab sections ek saath
+const HomePage = ({ isHoveringRef }) => (
+  <>
+    <Home isHoveringRef={isHoveringRef} />
+    <Home3 />
+  </>
+);
+
+function AppContent() {
   const [showIntro, setShowIntro] = useState(true);
   const { isHoveringRef } = useCursor();
 
@@ -24,13 +35,24 @@ function App() {
       ) : (
         <>
           <Nav isHoveringRef={isHoveringRef} />
-          <Home isHoveringRef={isHoveringRef} />
-          <Home3 />
-          <About isHoveringRef={isHoveringRef} />
-          {/* <ComingSoon /> */}
+          {/* ✅ Route ko Routes ke andar rakha */}
+          <Routes>
+            <Route path="/"        element={<HomePage isHoveringRef={isHoveringRef} />} />
+            <Route path="/work"    element={<Work />} />
+            <Route path="/about"   element={<About isHoveringRef={isHoveringRef} />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
         </>
       )}
     </motion.div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
 
