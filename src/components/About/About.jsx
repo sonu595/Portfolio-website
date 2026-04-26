@@ -24,9 +24,9 @@ const About = () => {
             transition={{ duration: 1.4, ease: 'easeOut' }}
           />
           <div className='absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent' />
-          <div className='absolute bottom-8 left-6 right-6 z-30'>
+          <div className='absolute bottom-13 left-6 right-6 z-30'>
             <motion.h1
-              className='text-2xl font-serifHero italic font-light tracking-widest text-white/80'
+              className='text-2xl font-momo italic font-light tracking-widest text-white/80'
               initial={{ opacity: 0, x: -60 }}
               animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
               transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
@@ -35,10 +35,10 @@ const About = () => {
             </motion.h1>
             <div className='overflow-hidden'>
               <motion.h1
-                className='text-6xl font-sansHero font-bold leading-none text-white'
+                className='text-5xl font-sansHero font-bold leading-tight text-white'
                 initial={{ y: '100%' }}
                 animate={inView ? { y: '0%' } : { y: '100%' }}
-                transition={{ duration: 0.9, delay: 0.75, ease: [0.76, 0, 0.24, 1] }}
+                transition={{ duration: 0.6, delay: 0.6, ease: [0.76, 0, 0.24, 1] }}
               >
                 Sonu&nbsp;Singh
               </motion.h1>
@@ -75,14 +75,18 @@ const About = () => {
               hi there, i'm
             </motion.h1>
             <div className='overflow-hidden'>
-              <motion.h1
-                className='text-[10vw] font-bold font-sansHero leading-none text-white whitespace-nowrap'
-                initial={{ y: '100%' }}
-                animate={inView ? { y: '0%' } : { y: '100%' }}
-                transition={{ duration: 1, delay: 0.65, ease: [0.76, 0, 0.24, 1] }}
-              >
-                Sonu Singh
-              </motion.h1>
+            <motion.h1
+              className="text-[10vw] font-bold md:mb-10 font-sans leading-tight text-white"
+              initial={{ y: 80, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                duration: 0.9,
+                delay: 0.5,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              Sonu Singh
+            </motion.h1>
             </div>
           </div>
         </div>
@@ -90,6 +94,7 @@ const About = () => {
       </div>
 
       <About2 />
+      <About3 />
     </>
   )
 }

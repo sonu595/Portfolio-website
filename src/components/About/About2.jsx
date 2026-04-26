@@ -14,12 +14,10 @@ const About2 = () => {
       viewport={{ once: true }}
       className="max-w-5xl mx-auto w-full"
     >
-      {/* Title */}
       <h1 className="italic font-[Playfair_Display] text-5xl sm:text-4xl text-center mb-4">
         the Resume
       </h1>
 
-      {/* Bio text */}
       <p className="text-center text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed md:leading-loose text-gray-300 font-light px-2">
         I have been working for the past
         <span className="text-white font-bold mx-1">1+ years</span>
@@ -44,7 +42,7 @@ const About2 = () => {
       <motion.img
         src={img}
         alt="laptop"
-        className="mt-6 rounded-xl shadow-lg relative z-0"
+        className="mt-6 rounded-xl shadow-lg w-225"
         initial={{ scale: 1.2 }}
         whileInView={{ scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
