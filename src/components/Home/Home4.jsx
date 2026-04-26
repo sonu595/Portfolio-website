@@ -29,7 +29,7 @@ const Home4 = () => {
         <motion.img
           src={img}
           alt="preview"
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover -translate-y-20"
           initial={{ scale: 1.2, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
@@ -50,7 +50,7 @@ const Home4 = () => {
         {/* WHERE */}
         <motion.h1
           variants={wordVariant}
-          className="absolute top-[18%] left-[5%] text-[6vw] md:text-[3vw] font-serif italic text-white/80"
+          className="absolute top-[7%] left-[5%] text-[6vw] md:text-[3vw] font-serif italic text-white/80"
         >
           where
         </motion.h1>
@@ -58,7 +58,7 @@ const Home4 = () => {
         {/* EXPERTISE */}
         <motion.h1
           variants={wordVariant}
-          className="absolute top-[23%] left-[5%] md:top-[20%] md:left-[15%] text-[14vw] md:text-[10vw] hover-text font-sans leading-none"
+          className="absolute top-[14%] left-[5%] md:top-[20%] md:left-[15%] text-[14vw] md:text-[10vw] hover-text font-sans leading-none"
         >
           EXPERTISE
         </motion.h1>
@@ -66,7 +66,7 @@ const Home4 = () => {
         {/* MEETS */}
         <motion.h1
           variants={wordVariant}
-          className="absolute top-[32%] lg:top-[40%] left-[5%] text-[12vw] md:text-[8vw] hover-text font-sans leading-none"
+          className="absolute top-[26%] lg:top-[40%] left-[5%] text-[12vw] md:text-[8vw] hover-text font-sans leading-none"
         >
           MEETS
         </motion.h1>
@@ -74,7 +74,7 @@ const Home4 = () => {
         {/* INNOVATION */}
         <motion.h1
           variants={wordVariant}
-          className="absolute bottom-[12%] left-[5%] md:bottom-[19%] md:left-[25%] text-[12vw] md:text-[10vw] hover-text font-sans leading-none"
+          className="absolute bottom-[9%] left-[5%] md:bottom-[19%] md:left-[25%] text-[12vw] md:text-[10vw] hover-text font-sans leading-none"
         >
           INNOVATION
         </motion.h1>
