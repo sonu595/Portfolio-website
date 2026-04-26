@@ -44,7 +44,7 @@ const Home = () => (
     >
 
     {/* Line 1: I'm a  FULL-STACK */}
-    <div className="flex flex-wrap items-baseline justify-center md:justify-start gap-x-4 md:gap-x-6">
+    <div className="flex flex-wrap items-baseline justify-start md:justify-start gap-x-4 md:gap-x-6">
       
       <motion.span
         variants={wordVariant}
@@ -58,7 +58,7 @@ const Home = () => (
     </div>
 
       {/* Line 2: DEVELOPER & */}
-      <div className="flex flex-wrap items-baseline  font-light justify-end">
+      <div className="flex flex-wrap items-baseline  justify-end">
         <Word>DEVELOPER &</Word>
       </div>
 
