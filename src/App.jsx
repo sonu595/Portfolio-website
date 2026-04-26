@@ -3,19 +3,22 @@ import { motion } from "framer-motion";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Nav     from "./components/Nav";
-import Home    from "./components/Home";
-import Home3   from "./components/Home3";
+import Home    from "./components/Home/Home";
+import Home3   from "./components/Home/Home3";
 import About   from "./components/About/About";
 import Work    from "./components/work/work";   
 import Contact from "./components/contact/contact";
 import Intro   from "./Intro";
 import useCursor from "./hooks/useCursor";
+import ScrollToTop from "./hooks/ScrollToTop";
+import Home4 from "./components/Home/Home4";
 
 // Landing page — sab sections ek saath
 const HomePage = ({ isHoveringRef }) => (
   <>
     <Home isHoveringRef={isHoveringRef} />
     <Home3 />
+    <Home4 />
   </>
 );
 
@@ -34,6 +37,7 @@ function AppContent() {
         <Intro onComplete={() => setShowIntro(false)} />
       ) : (
         <>
+        <ScrollToTop />
           <Nav isHoveringRef={isHoveringRef} />
           <Routes>
             <Route path="/"        element={<HomePage isHoveringRef={isHoveringRef} />} />

@@ -1,36 +1,14 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import SlideButton from '../hooks/Button'
+import SlideButton from '../../hooks/Button'
+import { useNavigate } from 'react-router-dom'
 
-// const SlideButton = ({ label }) => (
-//   <motion.div
-//     whileHover="hover"
-//     initial="rest"
-//     className="relative overflow-hidden cursor-pointer select-none
-//                px-8 sm:px-10 py-3 sm:py-4
-//                text-base sm:text-lg font-semibold
-//                border-2 border-white rounded-full text-white
-//                min-w-35 sm:min-w-40 text-center"
-//   >
-//     <motion.span
-//       style={{ display: 'block' }}
-//       variants={{ rest: { y: 0 }, hover: { y: '-200%' } }}
-//       transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-//     >
-//       {label}
-//     </motion.span>
+const Home3 = () => {
 
-//     <motion.span
-//       style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-//       variants={{ rest: { y: '200%' }, hover: { y: 0 } }}
-//       transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-//     >
-//       {label}
-//     </motion.span>
-//   </motion.div>
-// );
+  const navigate = useNavigate()
+  return (
 
-const Home3 = () => (
+    
   <div className="min-h-screen bg-black text-white flex items-center justify-center px-4 sm:px-6 py-16 sm:py-24">
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -38,7 +16,7 @@ const Home3 = () => (
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
       className="max-w-5xl mx-auto w-full"
-    >
+      >
       {/* Bio text */}
       <p className="text-center text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed md:leading-loose text-gray-300 font-light px-2">
         I have been working for the past
@@ -57,11 +35,12 @@ const Home3 = () => (
 
       {/* Buttons — stack on mobile, row on sm+ */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
-        <SlideButton label="Know more →" />
+        <SlideButton label="Know more →" onClick={() => navigate("/about")} />
         <SlideButton label="Contact →" />
       </div>
     </motion.div>
   </div>
-);
+ )
+};
 
 export default Home3;

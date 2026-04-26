@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 // import video from '../assets/video2.mp4';
 // import video from '../assets/Image_to_Zooming_Code_Video.mp4';
-import video from '../assets/Animation.mp4';
+import video from '../../assets/Animation.mp4';
 
 const wordVariant = {
   hidden: { y: 80, opacity: 0 },
@@ -14,7 +14,6 @@ const containerVariant = {
   show: { transition: { staggerChildren: 0.18 } },
 };
 
-// gap added between "I'm a" and "FULL-STACK" so they don't clash on mobile
 const LINES = [
   { text: ["I'm a", "FULL-STACK"], justify: "justify-center md:justify-start", gap: true },
   { text: ["DEVELOPER &"],         justify: "justify-end" },
@@ -57,6 +56,7 @@ const Home = () => (
       ))}
     </motion.div>
   </div>
+
 );
 
 export default Home;

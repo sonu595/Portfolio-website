@@ -1,15 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom'; // ✅ FIX 1: framer-motion/client nahi, react-router-dom
+import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png'
 
 const NAV_LINKS = [
   { label: "Work",    to: "/work"    },
   { label: "About",   to: "/about"   },
-  { label: "Contact", to: "/contact" }, // ✅ FIX 2: "/Contact" → "/contact"
+  { label: "Contact", to: "/contact" },
   { label: "Blog",    to: "#"        },
 ];
 
-// ✅ FIX 3: prop name "text" → "label", aur "to" prop add kiya
 const DesktopLink = ({ label, to, index, linkRefs }) => (
   <Link to={to} className="animated-link-wrapper group" style={{ textDecoration: 'none', color: 'inherit' }}>
     <span
@@ -27,7 +27,6 @@ const DesktopLink = ({ label, to, index, linkRefs }) => (
   </Link>
 );
 
-// ✅ FIX 3 cont: "text" → "label", "to" prop add kiya
 const MobileLink = ({ label, to, index, onClick }) => (
   <Link to={to} onClick={onClick} className="w-full" style={{ textDecoration: 'none' }}>
     <motion.div
@@ -49,14 +48,13 @@ const Nav = ({ isHoveringRef }) => {
     <>
       <div className="absolute top-0 left-0 w-full flex justify-between items-center text-white z-50 px-4 sm:px-8">
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl cursor-none py-4 hover-text">
-            Sonu Singh
+          <span className="text-3xl sm:text-4xl md:text-5xl lg:text-xl cursor-none py-4 hover-text">
+            <img src={logo} className='w-10 sm:w-15 md:w-20 lg:w-16 ' ></img>
           </span>
         </Link>
 
         {/* Desktop links */}
         <div className="hidden md:flex gap-6 lg:gap-16 py-6 px-3 text-xl lg:text-2xl items-center">
-          {/* ✅ FIX 4: link object se .label aur .to properly pass karo, key bhi link.label */}
           {NAV_LINKS.slice(0, 3).map((link, i) => (
             <DesktopLink key={link.label} label={link.label} to={link.to} index={i} linkRefs={linkRefs} />
           ))}
@@ -93,7 +91,6 @@ const Nav = ({ isHoveringRef }) => {
             </button>
 
             <div className="flex flex-col items-center w-full max-w-xs">
-              {/* ✅ FIX 4: yahan bhi same fix */}
               {NAV_LINKS.map((link, i) => (
                 <MobileLink
                   key={link.label}
