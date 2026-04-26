@@ -74,7 +74,7 @@ const Home4 = () => {
         {/* INNOVATION */}
         <motion.h1
           variants={wordVariant}
-          className="absolute bottom-[12%] left-[5%] md:bottom-[10%] md:left-[25%] text-[12vw] md:text-[10vw] hover-text font-sans leading-none"
+          className="absolute bottom-[12%] left-[5%] md:bottom-[19%] md:left-[25%] text-[12vw] md:text-[10vw] hover-text font-sans leading-none"
         >
           INNOVATION
         </motion.h1>
