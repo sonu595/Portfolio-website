@@ -12,6 +12,7 @@ import Intro   from "./Intro";
 import useCursor from "./hooks/useCursor";
 import ScrollToTop from "./hooks/ScrollToTop";
 import Home4 from "./components/Home/Home4";
+import Home5 from "./components/Home/Home5";
 
 // Landing page — sab sections ek saath
 const HomePage = ({ isHoveringRef }) => (
@@ -19,6 +20,7 @@ const HomePage = ({ isHoveringRef }) => (
     <Home isHoveringRef={isHoveringRef} />
     <Home3 />
     <Home4 />
+    <Home5 />
   </>
 );
 

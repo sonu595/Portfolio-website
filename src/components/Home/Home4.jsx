@@ -63,7 +63,6 @@ const Home4 = () => {
           EXPERTISE
         </motion.h1>
 
-        {/* MEETS */}
         <motion.h1
           variants={wordVariant}
           className="absolute top-[26%] lg:top-[40%] left-[5%] text-[12vw] md:text-[8vw] hover-text font-sans leading-none"
