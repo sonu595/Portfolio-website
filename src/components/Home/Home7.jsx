@@ -51,7 +51,7 @@ const Home7 = () => {
       </div>
 
       <div className="flex flex-col md:flex-row items-center md:items-start
-        gap-10 md:gap-0 mt-16 sm:mt-24 md:mt-32 lg:mt-40
+        gap-10 md:gap-0 my-20 sm:my-24 md:my-32 lg:my-40
         px-6 py-8 sm:px-10 sm:py-15 md:px-16 md:py-20 lg:px-20 lg:py-30">
 
         {/* Text */}
@@ -96,9 +96,9 @@ const Home7 = () => {
               rel="noopener noreferrer"
               onMouseEnter={() => setHoveredIcon('github')}
               onMouseLeave={() => setHoveredIcon(null)}
-              className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-6
-              transition-all duration-1500 z-20
-              ${isVisible ? 'opacity-100 -translate-y-14' : 'opacity-0'}`}
+            className={`absolute top-0 left-1/2 -translate-x-1/2 
+            transition-all duration-1500 z-20
+            ${isVisible ? 'opacity-100 -translate-y-8 sm:-translate-y-14' : 'opacity-0'}`}
             >
               <div className="bg-white p-2 rounded-full hover:bg-gray-200 transition-colors">
                 <svg width="36" height="36" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000">
@@ -124,9 +124,10 @@ const Home7 = () => {
               rel="noopener noreferrer"
               onMouseEnter={() => setHoveredIcon('instagram')}
               onMouseLeave={() => setHoveredIcon(null)}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-6
+              // RIGHT ICON
+              className={`absolute right-0 top-1/2 -translate-y-1/2 
               transition-all duration-1500 z-20
-              ${isVisible ? 'opacity-100 translate-x-14' : 'opacity-0'}`}
+              ${isVisible ? 'opacity-100 translate-x-8 sm:translate-x-14' : 'opacity-0'}`}
             >
               <div className="bg-white p-2 rounded-full hover:bg-gray-200 transition-colors">
                 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -148,9 +149,9 @@ const Home7 = () => {
               rel="noopener noreferrer"
               onMouseEnter={() => setHoveredIcon('whatsapp')}
               onMouseLeave={() => setHoveredIcon(null)}
-              className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6
-              transition-all duration-[1500ms] z-20
-              ${isVisible ? 'opacity-100 translate-y-14' : 'opacity-0'}`}
+              className={`absolute bottom-0 left-1/2 -translate-x-1/2 
+              transition-all duration-1500 z-20
+              ${isVisible ? 'opacity-100 translate-y-14 sm:translate-y-14' : 'opacity-0'}`}
             >
               <div className="bg-white p-2 rounded-full hover:bg-gray-200 transition-colors">
                 <svg width="36" height="36" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#000000">
@@ -180,9 +181,10 @@ const Home7 = () => {
               rel="noopener noreferrer"
               onMouseEnter={() => setHoveredIcon('twitter')}
               onMouseLeave={() => setHoveredIcon(null)}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6
-              transition-all duration-[1500ms] z-20
-              ${isVisible ? 'opacity-100 -translate-x-14' : 'opacity-0'}`}
+              // LEFT ICON
+              className={`absolute left-0 top-1/2 -translate-y-1/2 
+              transition-all duration-1500 z-20
+              ${isVisible ? 'opacity-100 -translate-x-8 sm:-translate-x-14' : 'opacity-0'}`}
             >
               <div className="bg-white p-2 rounded-full hover:bg-gray-200 transition-colors">
                 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
