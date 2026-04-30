@@ -28,7 +28,7 @@ View Portfolio =>  *(https://sonuportfoliowebsite.vercel.app/)*
 - **Work** - Projects showcase *(coming soon)*
 - **Contact** - Get in touch 
 
-## 🚀 Run Locally
+## Run Locally
 
 ```bash
 npm install
