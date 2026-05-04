@@ -7,7 +7,7 @@ import mobileImg from '../../assets/laptop2.jpg'
 
 const About2 = () => {
   return (
-    <div className="min-h-screen bg-black text-white px-4 sm:px-6 py-16 sm:py-24">
+    <div className="min-h-screen bg-black text-white px-4 sm:px-6 pt-0 py-16 sm:py-24">
 
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -16,8 +16,8 @@ const About2 = () => {
         viewport={{ once: true }}
         className="max-w-5xl mx-auto w-full"
       >
-        <h1 className="italic font-[Playfair_Display] text-5xl sm:text-4xl text-center mb-4">
-          the Resume
+        <h1 className="italic font-heading text-5xl sm:text-4xl text-center mb-4">
+          The Resume
         </h1>
 
         <p className="text-center text-xl sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed md:leading-loose text-gray-300 font-light px-2">
@@ -43,17 +43,17 @@ const About2 = () => {
         viewport={{ once: true }}
       >
 
-        {/* ✅ Mobile Image */}
+        {/*Mobile Image */}
         <motion.img
           src={mobileImg}
           alt="mobile laptop"
-          className="block sm:hidden mt-6 w-full h-65 object-cover rounded-xl shadow-lg"
+          className="block sm:hidden mt-6 w-full h-75 object-cover rounded-xl shadow-lg"
           initial={{ scale: 1.3 }}
           whileInView={{ scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
         />
 
-        {/* ✅ Desktop Image */}
+        {/*Desktop Image */}
         <motion.img
           src={img}
           alt="laptop"

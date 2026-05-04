@@ -20,12 +20,12 @@ const About = () => {
           <motion.img
             src={img}
             alt="Sonu Singh"
-            className='w-full h-screen object-cover object-top'
+            className='h-auto flex  w-auto max-w-[96%] object-cover object-top pt-13'
             initial={{ scale: 1.2, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : { scale: 1.2, opacity: 0 }}
             transition={{ duration: 1.4, ease: 'easeOut' }}
           />
-          <div className='absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent' />
+          <div className='absolute inset-0 bg-linear-to-t from-black via-black/30 to-transparent' />
           <div className='absolute bottom-13 left-6 right-6 z-30'>
             <motion.h1
               className='text-2xl font-momo italic font-light tracking-widest text-white/80'
