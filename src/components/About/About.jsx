@@ -1,8 +1,10 @@
 import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import img from '../../assets/b_change_my_image_back (2).jpeg'
+// import img from '../../assets/b_change_my_image_back (2).jpeg'
+import img from '../../assets/Remove background project (4).png'
 import About2 from './About2'
 import About3 from './About3'
+import { image } from 'framer-motion/client'
 
 const About = () => {
   const ref = useRef(null)
@@ -49,7 +51,7 @@ const About = () => {
         {/* ── DESKTOP VIEW ── */}
         <div className='hidden md:block relative min-h-screen'>
           <motion.div
-            className='absolute right-0 top-0 w-[30%] h-full overflow-hidden'
+            className='absolute right-0 top-0 w-[40%] h-full overflow-hidden'
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -62,7 +64,7 @@ const About = () => {
               animate={inView ? { scale: 1 } : { scale: 1.2 }}
               transition={{ duration: 1.4, ease: 'easeOut' }}
             />
-            <div className='absolute inset-0 bg-linear-to-r from-black via-black/60 to-transparent' />
+            <div className='absolute inset-0 bg-linear-to-t from-black via-black/30 to-transparent' />
           </motion.div>
 
           <div className='absolute bottom-10 left-12 lg:left-20 z-10'>
