@@ -42,7 +42,7 @@ const skillsData = [
       { name: "MongoDB", level: 50 },
       { name: "Redis", level: 75 },
     ],
-    dir: "up",
+    dir: "left",
   },
   {
     title: "Tools & DevOps",
@@ -56,7 +56,7 @@ const skillsData = [
       { name: "Linux", level: 50 },
       { name: "AWS Basics", level: 60 },
     ],
-    dir: "down",
+    dir: "left",
   },
   {
     title: "Core Concepts",
@@ -111,7 +111,7 @@ const SkillItem = ({ skill, index, isInView, dir }) => {
       animate={isInView ? "visible" : "hidden"}
       transition={{
         delay: index * (isMobile ? 0.04 : 0.06),
-        duration: 0.5,
+        duration: 1.5,
         ease: "easeOut",
       }}
       className="group py-4 md:py-5 border-b border-white/5 hover:border-white/15 transition-colors duration-300"
@@ -121,7 +121,7 @@ const SkillItem = ({ skill, index, isInView, dir }) => {
           {skill.name}
         </span>
         <div className="flex items-center gap-2.5 shrink-0">
-          <span className="text-xs sm:text-sm text-white/35 font-mono">
+          <span className="text-xs sm:text-sm text-white/45 font-mono">
             {skill.level}%
           </span>
           <div className="h-px bg-white/10 w-8 group-hover:w-14 transition-all duration-300" />
@@ -134,7 +134,7 @@ const SkillItem = ({ skill, index, isInView, dir }) => {
           animate={isInView ? { width: `${skill.level}%` } : {}}
           transition={{
             delay: index * 0.04 + 0.25,
-            duration: 0.9,
+            duration: 1.5,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
           className="h-full bg-white/30"
@@ -161,7 +161,7 @@ const SkillSection = ({ title, tagline, description, skills, dir }) => {
   return (
     <section
       ref={ref}
-      className="min-h-svh flex flex-col justify-center
+      className="min-h-screen flex flex-col justify-center
                  px-6 sm:px-10 md:px-16 lg:px-24
                  py-10 sm:py-14 md:py-18
                  border-b border-white/5
@@ -180,7 +180,7 @@ const SkillSection = ({ title, tagline, description, skills, dir }) => {
           variants={titleVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
           /* clamp: 36 px → 96 px fluidly */
           style={{ fontSize: "clamp(2.25rem, 7vw, 6rem)" }}
           className="font-extrabold text-white leading-[1.05] mb-4 tracking-tight"
@@ -191,7 +191,7 @@ const SkillSection = ({ title, tagline, description, skills, dir }) => {
         <motion.p
           initial={{ opacity: 0, x: dir === "right" ? -20 : 20 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ delay: 0.12, duration: 0.5 }}
+          transition={{ delay: 0.12, duration: 1.5, ease: "easeOut" }}
           className="text-sm sm:text-base md:text-lg text-white/40 mb-3 font-light tracking-wide"
         >
           / {tagline}
@@ -200,7 +200,7 @@ const SkillSection = ({ title, tagline, description, skills, dir }) => {
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.22, duration: 0.5 }}
+          transition={{ delay: 0.22, duration: 1.5, ease: "easeOut" }}
           className="text-sm sm:text-base text-white/30 max-w-2xl leading-relaxed"
         >
           {description}
@@ -226,8 +226,7 @@ const SkillSection = ({ title, tagline, description, skills, dir }) => {
 
 /* ─── Root ───────────────────────────────────────────────────────────────── */
 const Skills = () => (
-  /* overflow-x-hidden on root prevents any residual horizontal scroll */
-  <div className="bg-black text-white selection:bg-white/10 overflow-x-hidden w-full overflow-y-auto">
+  <div className="bg-black text-white selection:bg-white/10  w-full ">
 
     {skillsData.map((section, index) => (
       <SkillSection key={index} {...section} sectionIndex={index} />
@@ -244,7 +243,7 @@ const Skills = () => (
       <h2 className="text-xl sm:text-3xl md:text-4xl font-light tracking-tight leading-snug">
         Let's Create
         <br />
-        <span className="font-extrabold">Something Amazing</span>
+        <span className="font-semibold">Something Amazing</span>
       </h2>
       <div className="w-14 sm:w-16 h-px bg-white/20 my-4" />
       <p className="text-white/30 text-xs sm:text-sm tracking-widest">
